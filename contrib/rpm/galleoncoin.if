@@ -1,0 +1,157 @@
+
+## <summary>policy for galleoncoin</summary>
+
+
+########################################
+## <summary>
+##	Transition to galleoncoin.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`galleoncoin_domtrans',`
+	gen_require(`
+		type galleoncoin_t, galleoncoin_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, galleoncoin_exec_t, galleoncoin_t)
+')
+
+
+########################################
+## <summary>
+##	Execute galleoncoin server in the galleoncoin domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`galleoncoin_initrc_domtrans',`
+	gen_require(`
+		type galleoncoin_initrc_exec_t;
+	')
+
+	init_labeled_script_domtrans($1, galleoncoin_initrc_exec_t)
+')
+
+
+########################################
+## <summary>
+##	Search galleoncoin lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`galleoncoin_search_lib',`
+	gen_require(`
+		type galleoncoin_var_lib_t;
+	')
+
+	allow $1 galleoncoin_var_lib_t:dir search_dir_perms;
+	files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read galleoncoin lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`galleoncoin_read_lib_files',`
+	gen_require(`
+		type galleoncoin_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	read_files_pattern($1, galleoncoin_var_lib_t, galleoncoin_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage galleoncoin lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`galleoncoin_manage_lib_files',`
+	gen_require(`
+		type galleoncoin_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_files_pattern($1, galleoncoin_var_lib_t, galleoncoin_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage galleoncoin lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`galleoncoin_manage_lib_dirs',`
+	gen_require(`
+		type galleoncoin_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_dirs_pattern($1, galleoncoin_var_lib_t, galleoncoin_var_lib_t)
+')
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	a galleoncoin environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`galleoncoin_admin',`
+	gen_require(`
+		type galleoncoin_t;
+		type galleoncoin_initrc_exec_t;
+		type galleoncoin_var_lib_t;
+	')
+
+	allow $1 galleoncoin_t:process { ptrace signal_perms };
+	ps_process_pattern($1, galleoncoin_t)
+
+	galleoncoin_initrc_domtrans($1)
+	domain_system_change_exemption($1)
+	role_transition $2 galleoncoin_initrc_exec_t system_r;
+	allow $2 system_r;
+
+	files_search_var_lib($1)
+	admin_pattern($1, galleoncoin_var_lib_t)
+
+')
+

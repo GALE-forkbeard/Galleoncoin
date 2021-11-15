@@ -1,0 +1,81 @@
+policy_module(galleoncoin, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type galleoncoin_t;
+type galleoncoin_exec_t;
+init_daemon_domain(galleoncoin_t, galleoncoin_exec_t)
+
+permissive galleoncoin_t;
+
+type galleoncoin_initrc_exec_t;
+init_script_file(galleoncoin_initrc_exec_t)
+
+type galleoncoin_conf_t;
+files_type(galleoncoin_conf_t)
+
+type galleoncoin_var_lib_t;
+files_type(galleoncoin_var_lib_t)
+
+type galleoncoin_var_run_t;
+files_type(galleoncoin_var_run_t)
+
+type galleoncoin_port_t;
+corenet_port(galleoncoin_port_t)
+
+########################################
+#
+# galleoncoin local policy
+#
+allow galleoncoin_t self:process { fork };
+
+allow galleoncoin_t self:fifo_file rw_fifo_file_perms;
+allow galleoncoin_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(galleoncoin_t, galleoncoin_conf_t, galleoncoin_conf_t)
+manage_files_pattern(galleoncoin_t, galleoncoin_conf_t, galleoncoin_conf_t)
+
+manage_dirs_pattern(galleoncoin_t, galleoncoin_var_lib_t, galleoncoin_var_lib_t)
+manage_files_pattern(galleoncoin_t, galleoncoin_var_lib_t, galleoncoin_var_lib_t)
+files_var_lib_filetrans(galleoncoin_t, galleoncoin_var_lib_t, { dir file })
+
+manage_dirs_pattern(galleoncoin_t, galleoncoin_var_run_t, galleoncoin_var_run_t)
+manage_files_pattern(galleoncoin_t, galleoncoin_var_run_t, galleoncoin_var_run_t)
+
+sysnet_dns_name_resolve(galleoncoin_t)
+corenet_all_recvfrom_unlabeled(galleoncoin_t)
+
+allow galleoncoin_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(galleoncoin_t)
+corenet_tcp_sendrecv_generic_node(galleoncoin_t)
+corenet_tcp_sendrecv_all_ports(galleoncoin_t)
+corenet_tcp_bind_generic_node(galleoncoin_t)
+
+gen_require(`
+    type galleoncoin_port_t;
+')
+allow galleoncoin_t galleoncoin_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type galleoncoin_port_t;
+')
+allow galleoncoin_t galleoncoin_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(galleoncoin_t)
+
+files_read_etc_files(galleoncoin_t)
+
+miscfiles_read_localization(galleoncoin_t)
+
+sysnet_dns_name_resolve(galleoncoin_t)
+
+allow galleoncoin_t galleoncoin_exec_t:file execute_no_trans;
+allow galleoncoin_t self:process setsched;
+corecmd_exec_ls(galleoncoin_t)
+corenet_tcp_connect_http_port(galleoncoin_t)
+dev_read_urand(galleoncoin_t)
+fs_getattr_xattr_fs(galleoncoin_t)
+kernel_read_system_state(galleoncoin_t)

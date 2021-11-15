@@ -1,0 +1,8 @@
+/usr/bin/galleoncoin-cli		--	gen_context(system_u:object_r:galleoncoin_exec_t,s0)
+/usr/sbin/galleoncoind		--	gen_context(system_u:object_r:galleoncoin_exec_t,s0)
+/usr/lib(64)?/galleoncoin/galleoncoind		--	gen_context(system_u:object_r:galleoncoin_exec_t,s0)
+
+/etc/galleoncoin(/.*)?		gen_context(system_u:object_r:galleoncoin_conf_t,s0)
+/var/lib/galleoncoin(/.*)?		gen_context(system_u:object_r:galleoncoin_var_lib_t,s0)
+
+(/var)?/run/galleoncoind(/.*)?   gen_context(system_u:object_r:galleoncoin_var_run_t,s0)

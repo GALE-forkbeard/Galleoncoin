@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=GalleonCoin Core
+Comment=GalleonCoin P2P Cryptocurrency
+Comment[fr]=GalleonCoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=GalleonCoin, eşten eşe kriptografik sanal para birimi
+Exec=galleoncoin-qt %u
+Terminal=false
+Type=Application
+Icon=galleoncoin128
+MimeType=x-scheme-handler/galleoncoin;
+Categories=Office;Finance;
+StartupWMClass=GalleonCoin-qt

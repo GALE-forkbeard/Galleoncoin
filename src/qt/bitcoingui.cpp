@@ -368,7 +368,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
     }
-
+/**
     governanceAction = new QAction(QIcon(":/icons/governance"), tr("&Governance"), this);
     governanceAction->setStatusTip(tr("Show Proposals"));
     governanceAction->setToolTip(governanceAction->statusTip());
@@ -379,7 +379,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     governanceAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
 #endif
     tabGroup->addAction(governanceAction);
-
+*/
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
     // can be triggered from the tray menu, and need to show the GUI to be useful.
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));

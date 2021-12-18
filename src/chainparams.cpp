@@ -132,7 +132,7 @@ public:
         nTargetTimespan = 10 * 60;
         nTargetSpacing = 1 * 60;
         nMaturity = 20;
-        nMasternodeCountDrift = 20;
+        nMasternodeCountDrift = 30;
         nMaxMoneyOut = 9999999999 * COIN;
 
         /** Height or Time Based Activations **/
@@ -187,7 +187,7 @@ public:
         assert(hashGenesisBlock == uint256("0x00000c69d386422d24095f6343e2f18562bd022bee81a13731136dd075da11eb"));
         assert(genesis.hashMerkleRoot == uint256("0xeb923ea38b8ac8146fd905d13d6a2f5c68d9d2e04deadf5509ed034d9a8a6535"));
 
-        vSeeds.push_back(CDNSSeedData("202.61.204.198", "202.61.204.198"));
+        vSeeds.push_back(CDNSSeedData("23.234.244.95", "23.234.244.95"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 1);

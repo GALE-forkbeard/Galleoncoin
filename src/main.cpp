@@ -1988,17 +1988,32 @@ double ConvertBitsToDouble(unsigned int nBits)
 
 int64_t GetBlockValue(int nHeight)
 {
+	
+	if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+		if (nHeight < 900000 && nHeight > 0)
+			return 2500 * COIN;
+	}
+	
     int64_t nSubsidy = 0;
     
     if (nHeight == 0) {
      nSubsidy = 1000000000 * COIN;
     }
-    else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight > 0) {
-     nSubsidy = 1000 * COIN;
-    }
-    else if (nHeight > Params().LAST_POW_BLOCK()) {
-     nSubsidy = 5 * COIN;
-    }
+    else if (nHeight <= 1250000 && nHeight > 0) {
+		nSubsidy = 1000 * COIN;
+	}
+    else if (nHeight <= 2500000 && nHeight > 1250000) {
+		nSubsidy = 500 * COIN;
+	}
+	else if (nHeight <= 3750000 && nHeight > 2500000) {
+		nSubsidy = 250 * COIN;
+	}
+	else if (nHeight <= 5000000 && nHeight > 3750000) {
+		nSubsidy = 125 * COIN;
+	}
+	else {
+		nSubsidy = 5 * COIN;
+	}
     
     return nSubsidy;
 }

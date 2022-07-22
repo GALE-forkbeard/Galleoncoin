@@ -59,12 +59,15 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (100, uint256("0000000d9e9d74f1a30595d7d134c7f32058d0dbb527186967b6613362f29cc1"))
     (1000, uint256("000000000b41319ec664f866961b1fc336b8be9339cd4556f0ac98f4663a2708"))
     (10000, uint256("0000000002f52a6432ca7c2e1eecacccc68efe68b56bdf0e986a50aea308d29b"))
-    (19400, uint256("00000000003134496869144fe65e73234235f0d32192c943fd51adba44af9796"));
+    (19400, uint256("00000000003134496869144fe65e73234235f0d32192c943fd51adba44af9796"))
+	(187032, uint256("000000000045de1110425c3da7260e6edb3a122092c4fa43ada9afae1301a775"))
+    (275014, uint256("000000000070a98086b89007bdac11aab5a0343d9f72c827aa83c5861667fec3"))
+    (325803, uint256("000000000060b895c581d2ca9f9ddd770f18fd760e263de9f56add5dd009ac80"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1638314751, // * UNIX timestamp of last checkpoint block
-    22245,    // * total number of transactions between genesis and last checkpoint
+    1657686829, // * UNIX timestamp of last checkpoint block
+    388300,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     1.000000 // * estimated number of transactions per day after checkpoint
 };
@@ -132,7 +135,7 @@ public:
         nTargetTimespan = 10 * 60;
         nTargetSpacing = 1 * 60;
         nMaturity = 20;
-        nMasternodeCountDrift = 30;
+        nMasternodeCountDrift = 20;
         nMaxMoneyOut = 9999999999 * COIN;
 
         /** Height or Time Based Activations **/
@@ -187,7 +190,9 @@ public:
         assert(hashGenesisBlock == uint256("0x00000c69d386422d24095f6343e2f18562bd022bee81a13731136dd075da11eb"));
         assert(genesis.hashMerkleRoot == uint256("0xeb923ea38b8ac8146fd905d13d6a2f5c68d9d2e04deadf5509ed034d9a8a6535"));
 
-        vSeeds.push_back(CDNSSeedData("23.234.244.95", "23.234.244.95"));
+        vSeeds.push_back(CDNSSeedData("23.94.250.55", "23.94.250.55"));
+		vSeeds.push_back(CDNSSeedData("172.245.94.117", "172.245.94.117"));
+		vSeeds.push_back(CDNSSeedData("23.94.248.155", "23.94.248.155"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 1);
@@ -264,7 +269,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 10 * 60;
         nTargetSpacing = 1 * 60;
-        nLastPOWBlock = 200;
+        nLastPOWBlock = 900000;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 0;

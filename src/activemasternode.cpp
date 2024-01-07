@@ -456,7 +456,7 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternode()
 
     // Filter
     for (const COutput& out : vCoins) {
-        if (out.tx->vout[out.i].nValue == 200000 * COIN) { //exactly
+        if (out.tx->vout[out.i].nValue == 5000000 * COIN) { //exactly
             filteredCoins.push_back(out);
         }
     }

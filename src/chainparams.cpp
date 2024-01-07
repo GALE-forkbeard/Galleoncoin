@@ -62,12 +62,26 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (19400, uint256("00000000003134496869144fe65e73234235f0d32192c943fd51adba44af9796"))
 	(187032, uint256("000000000045de1110425c3da7260e6edb3a122092c4fa43ada9afae1301a775"))
     (275014, uint256("000000000070a98086b89007bdac11aab5a0343d9f72c827aa83c5861667fec3"))
-    (325803, uint256("000000000060b895c581d2ca9f9ddd770f18fd760e263de9f56add5dd009ac80"));
+    (325803, uint256("000000000060b895c581d2ca9f9ddd770f18fd760e263de9f56add5dd009ac80"))
+	(401245, uint256("000000000097891054fe2db724162be4ffe9fa11a212a20c89b57999866e3e07"))
+	(485405, uint256("00000000010025926806d4efb9cb2e08f79f5a3c22e06eab4a5063c3eaf5393b"))
+	(554129, uint256("00000000003e8895b38a4d7f881d5de02e2f73bda45dadf7c48ff429d2cd7844"))
+	(595854, uint256("0000000001a87633d060b6bb7641b1e994a189ecccb46a540511c4b6af6c62c4"))
+	(632458, uint256("000000000010bcd49dc81f8be1e7e13ba0ce07a51b5d211d3ade67aae37c4ea7"))
+	(697548, uint256("000000000120d4afcfcd073a4be83bdb5442a4b4cabec7aa3d97fb9a861bf4fa"))
+	(735147, uint256("00000000004febea12cb368030a7391fca7ed52b78d0bab482a4f106daace60c"))
+	(789345, uint256("000000000064ce524baaba74a6bc1720bb6ed7b0f63e0cc7c3d1668f0cf61805"))
+	(889723, uint256("00000000013da3e2d60037c0eddb9c1c50a28fbcb2a13ad9ec835b3b9442901f"))
+	(932712, uint256("0000000002dd3dd2d9a056980d3bd29ca6945dd25aa2da7f38acea6b55a1e95a"))
+	(995484, uint256("00000000000c3e27e3cc9f9ed4fa45d8ef274340024e66529ef8797f1f20e953"))
+	(1006113, uint256("00000000007b7282f7e5903fc7a6083a6a46683b1d57a769bbe35b55bc5d346e"))
+	(1020218, uint256("000000000002847cd430734bf708d38bd1569d2ba9958aa62e4f710d2a8783e7"))
+	(1023928, uint256("00000000004a9076eb815c4a0f659a6ba8caf1c4d5cfcd5e92b3f635f7eb9b0b"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1657686829, // * UNIX timestamp of last checkpoint block
-    388300,    // * total number of transactions between genesis and last checkpoint
+    1703924924, // * UNIX timestamp of last checkpoint block 1657686829
+    1130634,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     1.000000 // * estimated number of transactions per day after checkpoint
 };
@@ -190,9 +204,8 @@ public:
         assert(hashGenesisBlock == uint256("0x00000c69d386422d24095f6343e2f18562bd022bee81a13731136dd075da11eb"));
         assert(genesis.hashMerkleRoot == uint256("0xeb923ea38b8ac8146fd905d13d6a2f5c68d9d2e04deadf5509ed034d9a8a6535"));
 
-        vSeeds.push_back(CDNSSeedData("23.94.250.55", "23.94.250.55"));
-		vSeeds.push_back(CDNSSeedData("172.245.94.117", "172.245.94.117"));
-		vSeeds.push_back(CDNSSeedData("23.94.248.155", "23.94.248.155"));
+        vSeeds.push_back(CDNSSeedData("104.168.54.225", "104.168.54.225"));
+		vSeeds.push_back(CDNSSeedData("192.227.152.242", "192.227.152.242"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 1);
